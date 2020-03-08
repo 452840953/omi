@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwh.omi.dao.DataMapper">
+  <resultMap id="BaseResultMap" type="com.zwh.omi.entity.Data">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="instituteid" jdbcType="INTEGER" property="instituteid" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="birthplace" jdbcType="VARCHAR" property="birthplace" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contract" jdbcType="VARCHAR" property="contract" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="other" jdbcType="LONGVARCHAR" property="other" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zwh.omi.entity.Data">
+    insert into data (id, `name`, instituteid, 
+      createtime, birthday, birthplace, 
+      address, contract, sex, 
+      updatetime, `status`, username, 
+      `password`, other)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{instituteid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{contract,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{other,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zwh.omi.entity.Data">
+    update data
+    set `name` = #{name,jdbcType=VARCHAR},
+      instituteid = #{instituteid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      contract = #{contract,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      other = #{other,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, `name`, instituteid, createtime, birthday, birthplace, address, contract, 
+    sex, updatetime, `status`, username, `password`, other
+    from data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, instituteid, createtime, birthday, birthplace, address, contract, 
+    sex, updatetime, `status`, username, `password`, other
+    from data
+  </select>
+</mapper>

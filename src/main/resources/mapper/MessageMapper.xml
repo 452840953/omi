@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwh.omi.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.zwh.omi.entity.Message">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sendid" jdbcType="INTEGER" property="sendid" />
+    <result column="sendtype" jdbcType="VARCHAR" property="sendtype" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="utype" jdbcType="VARCHAR" property="utype" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="info" jdbcType="LONGVARCHAR" property="info" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zwh.omi.entity.Message">
+    insert into message (id, title, sendid, 
+      sendtype, `uid`, utype, 
+      createtime, updatetime, info
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{sendid,jdbcType=INTEGER}, 
+      #{sendtype,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{utype,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{info,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zwh.omi.entity.Message">
+    update message
+    set title = #{title,jdbcType=VARCHAR},
+      sendid = #{sendid,jdbcType=INTEGER},
+      sendtype = #{sendtype,jdbcType=VARCHAR},
+      `uid` = #{uid,jdbcType=INTEGER},
+      utype = #{utype,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      info = #{info,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, title, sendid, sendtype, `uid`, utype, createtime, updatetime, info
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, sendid, sendtype, `uid`, utype, createtime, updatetime, info
+    from message
+  </select>
+</mapper>

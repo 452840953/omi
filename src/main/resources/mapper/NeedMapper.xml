@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwh.omi.dao.NeedMapper">
+  <resultMap id="BaseResultMap" type="com.zwh.omi.entity.Need">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="dataid" jdbcType="INTEGER" property="dataid" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="info" jdbcType="LONGVARCHAR" property="info" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from need
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zwh.omi.entity.Need">
+    insert into need (id, title, dataid, 
+      createtime, info)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{dataid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=VARCHAR}, #{info,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zwh.omi.entity.Need">
+    update need
+    set title = #{title,jdbcType=VARCHAR},
+      dataid = #{dataid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      info = #{info,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, title, dataid, createtime, info
+    from need
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, dataid, createtime, info
+    from need
+  </select>
+</mapper>
